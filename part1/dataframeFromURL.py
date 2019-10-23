@@ -21,3 +21,15 @@ def randString_withCSV(length=10):
 	return st+".csv"
 
 
+def test_create_dataframe(df, cols):
+	c = df.columns
+	c.sort()
+	cols.sort()
+	if c != cols:
+		return False
+	elif len(df.index) < 10:
+		return False
+	else:
+		sameColTypes = [str(df[y].dtype) != 'object' for y in c]
+		return (sum(sameColTypes) == len(sameColTypes))
+
